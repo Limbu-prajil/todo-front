@@ -6,7 +6,13 @@ const LOCAL_STORAGE_KEY = 'todos.key'
 
 function App() {
   console.log('1')
-  const [todos, setTodos] = useState([])
+  const [todos, setTodos] = useState([
+    { id: '1', name: 'Swimming', complete: false },
+    { id: '2', name: 'Hiking', complete: false },
+    { id: '3', name: 'Biking', complete: false },
+    { id: '4', name: 'Boating', complete: false },
+    { id: '5', name: 'Running', complete: false }
+  ])
   const todoNameRef = useRef()
 
   function addTodo(e) {
