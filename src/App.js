@@ -1,18 +1,14 @@
 import React, { useState, useRef, useEffect} from 'react';
 import TodoList from './TodoList'; 
 import {v4 as uuidv4} from 'uuid'
+import axios from 'axios'
+
 
 const LOCAL_STORAGE_KEY = 'todos.key'
 
 function App() {
   console.log('1')
-  const [todos, setTodos] = useState([
-    { id: '1', name: 'Swimming', complete: false },
-    { id: '2', name: 'Hiking', complete: false },
-    { id: '3', name: 'Biking', complete: false },
-    { id: '4', name: 'Boating', complete: false },
-    { id: '5', name: 'Running', complete: false }
-  ])
+  const [todos, setTodos] = useState([])
   const todoNameRef = useRef()
 
   function addTodo(e) {
@@ -25,14 +21,24 @@ function App() {
     todoNameRef.current.value = null
    }
 
-  useEffect(() => {
+  /* useEffect(() => {
     const storedTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
     if(storedTodos) setTodos(storedTodos)
   }, [])
-
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos))
-  }, [todos])
+  }, [todos]) */
+
+  useEffect(() => {
+    axios.get('/api/todos')
+      .then(response => {
+        setTodos(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching todos:', error);
+      });
+  }, []);
+  
 
   function toggleTodo(idChecked) {
     console.log('3')
