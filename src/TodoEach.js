@@ -40,4 +40,4 @@ export default function TodoEach({ listEach, toggleTodo, editTodo }) {
       )}
     </div>
   );
-}
+}    

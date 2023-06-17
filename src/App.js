@@ -38,7 +38,7 @@ function App() {
     const storedTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
     if(storedTodos) setTodos(storedTodos)
   }, [])
-  useEffect(() => {
+  useEffect(() => { 
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos))
   }, [todos]) */
 
